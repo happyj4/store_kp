@@ -11,7 +11,3 @@ class ShowAllProducts(BaseModel):
       orm_mode = True
       
       
-class ProductOut(BaseModel):
-  id:int
-  name:str
-  price: float

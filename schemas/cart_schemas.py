@@ -2,8 +2,6 @@ from pydantic import BaseModel
 from schemas import products_schemas
 from typing import Optional
 
-ProductOut = products_schemas.ProductOut
-
 class AddToCart(BaseModel):
     product_id: int
     quantity: int
