@@ -4,7 +4,7 @@ from typing import Optional
 
 class AddToCart(BaseModel):
     product_id: int
-    quantity: int
+    quantity: Optional[int] = 1
 
 class ShowProductCartItem(BaseModel):
     name: str

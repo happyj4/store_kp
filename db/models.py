@@ -21,7 +21,7 @@ class Cart(Base):
   
   id = Column(Integer, primary_key=True, index=True)
   product_id = Column(Integer, ForeignKey('products.id', ondelete='CASCADE'), nullable=False)
-  quantity = Column(Integer, nullable=False,default=1)
+  quantity = Column(Integer, nullable=False, default=1)
   
   product = relationship("Product", back_populates="carts")
   

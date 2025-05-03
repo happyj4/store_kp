@@ -34,9 +34,19 @@ def show(db: Session) -> ShowProductCart:
 
     for item in cart_items:
         result.append(ShowProductCartItem(
+
             name=item.product.name,
             price=float(item.product.price),
             quantity=item.quantity
         ))
 
     return ShowProductCart(items=result)
+
+
+def destroy(id, db:Session):
+    cart_item = db.query(models.Cart).filter(models.Cart.product_id == id).delete(synchronize_session=False)
+    db.commit()
+    if not cart_item:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail = f"Товар з id = {id} не знайдено")
+    return 
+    
