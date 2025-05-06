@@ -16,7 +16,7 @@ def add_to_cart(request: cart_schemas.AddToCart, db: Session = Depends(get_db)):
     return cart_rep.add_to_cart(request, db)
 
 
-@router.get("/", response_model=cart_schemas.ShowProductCart, status_code=status.HTTP_200_OK)
+@router.get("/", response_model=list[cart_schemas.ShowProductCartItem], status_code=status.HTTP_200_OK)
 def show_cart(db: Session = Depends(get_db)):
     return cart_rep.show(db)
 
@@ -24,3 +24,7 @@ def show_cart(db: Session = Depends(get_db)):
 @router.delete("/{id}/", status_code=status.HTTP_204_NO_CONTENT)
 def destroy(id:Annotated[int, Path(ge=1, lt=100)] ,db: Session = Depends(get_db)):
     return cart_rep.destroy(id, db)
+
+@router.delete("/", status_code=status.HTTP_204_NO_CONTENT)
+def destroy_all(db: Session = Depends(get_db)):
+    return cart_rep.destroy_all(db)
